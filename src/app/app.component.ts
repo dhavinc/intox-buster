@@ -1,12 +1,19 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 declare const BMap;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
   title = 'intox-buster';
+  constructor(private http: HttpClient) {}
+  ngOnInit() {
+    this.http.get('https://server.dhia.tn:3002/api?intoxbuster=true').subscribe(data => {
+      // do shit
+    });
+  }
   ngAfterViewInit() {
     // Header Underline https://codepen.io/alphardex/pen/JjoqbNP
     // let underlineMenuItems = document.querySelectorAll('.underline-menu li');
